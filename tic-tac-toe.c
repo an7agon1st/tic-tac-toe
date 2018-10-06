@@ -76,26 +76,45 @@ int wPlayer(){
 	int ch;							//takes user choice and stores
 	int rec=0;						//checking doubleing of choice input
 
+	int conf=0;						//stores confirmation for index repeat
 
 
-	int temp=rec;					//for da checks
+
+
+	int temp;					//for da checks
 
 	Print(9,' ');					//prints blank tictactoe
 	
 	while(win==-1)
 	{
-		temp=rec;
+		
 
 		printf("\nGo Player X\n");
-		
-		scanf("%d",&ch);
 
-		while(temp!=0){				//checks for repeat
-			if (temp%10==ch){
-				printf("wrong choice\n");
+		conf=0;
+
+		temp=rec;
+
+		while(!conf)
+		{	
+			conf++;
+			scanf("%d",&ch);
+
+			temp=rec;
+
+			while(temp!=0&&ch>=1&&ch<=9){				//checks for repeat
+				if (temp%10==ch){
+					printf("wrong choice\n");
+
+
+					conf--;				//if repeated choice, conf=0 and loop runs again
+					
+					break;
+				}
+
+
+
 				temp=temp/10;
-				return -1;
-				
 			}
 		}
 
@@ -118,16 +137,29 @@ int wPlayer(){
 		printf("\nGo Player O\n");
 
 
-		scanf("%d",&ch);
+		
 
 		temp=rec;
+		conf=0;
 
-		while(temp!=0){				//checks for repeat
-			if (temp%10==ch){
-				printf("wrong choice\n");
+		while(conf==0)
+		{	
+			conf++;
+			scanf("%d",&ch);
+			temp=rec;
+
+			while(temp!=0&&ch>=1&&ch<=9){				//checks for repeat
+				if (temp%10==ch){
+					printf("wrong choice\n");
+
+
+					conf--;				//if repeated choice, conf=0 and loop runs again
+
+					break;
+				}
+
+
 				temp=temp/10;
-				return -1;
-				
 			}
 		}
 
